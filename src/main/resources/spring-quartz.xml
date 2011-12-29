@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="supToDistTaskQuartzBean"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="supToDistTask"/>
+        <property name="targetMethod" value="supToDist"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="supToDistTaskQuartzTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="supToDistTaskQuartzBean"/>
+        </property>
+        <property name="cronExpression">
+            <!--执行时间，每10分钟一次-->
+            <value>0/10 * * * * ?</value>
+        </property>
+    </bean>
+
+
+    <bean id="startQuartz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!--<ref bean="supToDistTaskQuartzTrigger"/>-->
+            </list>
+        </property>
+    </bean>
+
+</beans>

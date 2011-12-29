@@ -1,0 +1,565 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #666666;
+    font-family: arial,helvetica,sans serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+a:link {
+    color: #006699;
+}
+a:visited {
+    color: #003366;
+}
+#minMax {
+    height: auto !important;
+    margin: 0 auto -75px;
+    min-height: 100%;
+    position: relative;
+    width: 1000px;
+}
+#header {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #666666;
+    height: 55px;
+    width: 1000px;
+}
+#logo {
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 345px;
+}
+#headermenu {
+    height: 40px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 5px 0;
+    position: absolute;
+    left: 0;
+    text-align: right;
+    top: 40px;
+    white-space: nowrap;
+    width: 475px;
+}
+#headermenu li {
+    color: #333333;
+    display: inline;
+}
+#headermenu li.a {
+    color: #006699;
+    padding: 0 5px;
+}
+#header.search #headermenu li#n-search a {
+    color: #666666;
+}
+#header.advancedSearch #headermenu li#n-advancedSearch a {
+    color: #666666;
+}
+#header.browse #headermenu li#n-browse a {
+    color: #666666;
+}
+#header.jarCheck #headermenu li#n-jarCheck a {
+    color: #666666;
+}
+#header.className #headermenu li#n-className a {
+    color: #666666;
+}
+#header.quickStats #headermenu li#n-quickStats a {
+    color: #666666;
+}
+#header.faq #headermenu li#n-faq a {
+    color: #666666;
+}
+#outer1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    width: 150px;
+}
+#outer3 {
+    margin-left: 130px;
+    width: 700px;
+}
+#outer4 {
+    float: right;
+    list-style: none outside none;
+    margin-right: 355px;
+    text-align: right;
+    width: 400px;
+}
+#outer4 li {
+    display: inline;
+    list-style: none outside none;
+}
+#outer5 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: right;
+    width: 150px;
+}
+#wrapper {
+    overflow: hidden;
+}
+#topbar {
+    background: none repeat scroll 0 0 #D8D8D8;
+    float: left;
+    width: 70%;
+}
+#results {
+    background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    margin-top: 20px;
+}
+#results table {
+    border: 1px solid;
+}
+#results a {
+    margin-right: 5px;
+}
+#push, #footer {
+    height: 75px;
+}
+#footer {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    position: relative;
+    width: 1000px;
+}
+#footermenu {
+    list-style: none outside none;
+    margin: 0;
+    padding-top: 10px;
+    text-align: center;
+}
+#footermenu li {
+    display: inline;
+}
+#footermenu a {
+    padding: 0;
+}
+#footermenu p {
+    color: #D8D8D8;
+    font-size: 10px;
+    padding: 5px 100px;
+}
+#inputArea {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding: 0;
+}
+#inputArea input {
+    font-size: 14px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    width: 470px;
+}
+#inputArea input[type="image"] {
+    float: right;
+    height: 30px;
+    margin-left: 5px;
+    width: 150px;
+}
+#masthead {
+    background: none repeat scroll 0 0 #006699;
+    margin-top: 15px;
+    text-align: center;
+}
+#masthead h1 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin: 0;
+    padding: 8px 0;
+}
+#masthead h3 {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 0;
+    padding: 8px 0;
+}
+h1 {
+    color: #333333;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 0;
+}
+h3 {
+    font-size: 16px;
+    margin: 0;
+    padding: 8px 0;
+}
+.content {
+    padding: 0;
+}
+.pageContent {
+    padding: 8px 0 0;
+}
+p {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+    padding: 5px 0;
+}
+#footer p, #header p {
+    color: #666666;
+}
+#header a, #footer a {
+    color: #006699;
+    padding: 0;
+    text-decoration: none;
+}
+#header a:hover, #footer a:hover {
+    text-decoration: none;
+}
+#footer li {
+    list-style-type: none;
+    padding: 0;
+}
+#footer a {
+    border-right: 0 none;
+}
+.menu a {
+    font-weight: bold;
+    padding: 0 40px;
+}
+#artifactDetailsDocs table {
+    border: 1px solid;
+}
+#artifactDetailsCoordinate {
+    color: #666666;
+    font-size: 24px;
+    margin: 0;
+}
+#artifactDetailsCoordinate a {
+    padding: 0 5px;
+}
+#artifactDetailsProjectInfo, #artifactDetailsDependencyInfo {
+    padding-bottom: 8px;
+    width: 35%;
+}
+#artifactDetailsProjectInfo legend {
+    width: 95%;
+}
+#artifactDetailsProjectInfo fieldset {
+    width: 100%;
+}
+#artifactDetailsProjectInfo label {
+    margin-right: 1em;
+    width: 20%;
+}
+#artifactDetailsProjectInfo input[type="text"] {
+    height: 18px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+    padding-bottom: 1px;
+    width: 70%;
+}
+#artifactDetailsDependencyInfo code {
+    width: 100%;
+}
+#artifactDetailsDependencyInfo legend {
+    width: 95%;
+}
+#artifactDetailsDependencyInfo fieldset {
+    border: medium none;
+    padding: 0;
+    width: 100%;
+}
+#artifactDetailsPomDisplay {
+    float: right;
+    height: 350px;
+    white-space: nowrap;
+    width: 62%;
+}
+#artifactDetailsPomDisplay #pomXmlForm {
+    height: 100%;
+    overflow: scroll;
+}
+#artifactDetailsPomDisplay legend {
+    width: 97%;
+}
+#artifactDetailsPomDisplay fieldset {
+    border: medium none;
+    padding: 0;
+    width: 100%;
+}
+#artifactDetailsResultContent {
+    padding-top: 50px;
+}
+.code {
+    margin-left: 20px;
+    width: 100px;
+}
+.syntaxhighlighter {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap;
+    width: 100% !important;
+}
+.ui-accordion .ui-accordion-content {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+}
+#browseHeader {
+    color: #666666;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+#browseResult table {
+    border: 1px solid;
+}
+.resultTable {
+    border: 1px solid;
+    width: 100%;
+}
+#browsePath a {
+    font-weight: bold;
+    padding: 0 5px;
+}
+img {
+    border: medium none;
+}
+#navigation {
+    border-bottom: 1px solid #000000;
+}
+#pageTitle {
+    float: left;
+    font-size: 24px;
+    margin-bottom: 8px;
+    padding: 0;
+    width: 300px;
+}
+.pagination {
+    float: right;
+    padding-top: 10px;
+    text-align: right;
+    width: 300px;
+}
+#pager, #pager-header {
+    display: inline;
+}
+#pager li, .links li {
+    display: inline;
+    list-style-type: none;
+}
+#footerPagination {
+    margin-bottom: 10px;
+    padding-top: 10px;
+    text-align: right;
+    width: 100%;
+}
+#footerPager, #footerPager-header {
+    display: inline;
+}
+#footerPager li, .links li {
+    display: inline;
+    list-style-type: none;
+}
+#selection {
+    padding: 10px 15px 0;
+}
+#selection li {
+    list-style-type: none;
+}
+#list {
+    padding-top: 10px;
+    width: 460px;
+    float: left;
+}
+#modify {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 460px;
+    float: right;
+    display: none;
+}
+.btn {
+    cursor: pointer;
+    color: #006699;
+    float: right;
+    padding-right: 10px;
+}
+.min_text{
+    width: 55px;
+}
+table {
+    border-collapse: collapse;
+    font-family: arial,helvetica,sans serif;
+    width: 100%;
+    table-layout: fixed;
+}
+table td, table th {
+    border: medium none;
+    font-size: 13px;
+    padding: 3px 7px 2px;
+    white-space: nowrap;
+    overflow: hidden
+}
+table th {
+    background-color: #006699;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 20px;
+    line-height: 18px;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+table th.w1 {
+    width: 124px
+}
+table tr.d0 {
+    background-color: #FFFFFF;
+    line-height: 22px;
+}
+table tr.d1 {
+    background: none repeat scroll 0 0 #EAEAEA;
+    line-height: 22px;
+}
+table tr.h0 td {
+    color: #333333;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+table tr.h0 em {
+    background: none repeat scroll 0 0 #FFF799;
+    color: #333333;
+    padding: 1px 2px;
+    text-decoration: none;
+}
+table tr.h0 em:hover {
+    background: none repeat scroll 0 0 transparent;
+    color: #666666;
+    text-decoration: none;
+}
+table tr.h1 td {
+    background: none repeat scroll 0 0 #EAEAEA;
+    color: #333333;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+table tr.h1 em {
+    background: none repeat scroll 0 0 #FFF799;
+    color: #333333;
+    padding: 1px 2px;
+    text-decoration: none;
+}
+table tr.h1 em:hover {
+    background: none repeat scroll 0 0 transparent;
+    color: #666666;
+    text-decoration: none;
+}
+table td.number {
+    text-align: right;
+    width: 80px;
+}
+table th.number {
+    text-align: right;
+}
+.hidden {
+    display: none;
+}
+fieldset {
+    border: medium none;
+    padding: 0;
+    width: 660px;
+}
+label {
+    float: left;
+    line-height: 18px;
+    margin-right: 0.5em;
+    padding-top: 4px;
+    text-align: right;
+    width: 15%;
+}
+legend {
+    background: none repeat scroll 0 0 #006699;
+    border-bottom: 10px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    height: 15px;
+    padding: 10px;
+    text-align: left;
+    width: 645px;
+}
+dd dt {
+    font-size: 110%;
+    font-weight: bold;
+    margin-top: 15px;
+}
+dd dd {
+    margin-top: 8px;
+}
+#statsText dl {
+    padding: 0 1em 1em;
+}
+#statsText dt {
+    clear: left;
+    color: #006699;
+    float: left;
+    font-size: 110%;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    text-align: right;
+    width: 300px;
+}
+#statsText dt:after {
+    content: ":";
+}
+#statsText dd {
+    font-size: 110%;
+    margin: 0 0 0 110px;
+    padding: 0.5em 1em;
+}
+#quickStats {
+    margin-top: 15px;
+}
+#faq {
+    margin-top: 15px;
+}
+h3 a {
+    text-decoration: none;
+}
+.sub {
+    font-size: 80%;
+}
+#aboutContent ul {
+    padding-bottom: 8px;
+}
+#aboutBlogs {
+    float: right;
+    margin-right: 20px;
+    width: 300px;
+}
+#resourcesContent, #aboutContent {
+    float: left;
+    width: 650px;
+}
+#twitter {
+    float: right;
+    margin-bottom: 40px;
+    width: 300px;
+}
+.pageHeader {
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    text-align: left;
+    width: 660px;
+}
+.error {
+    color: red;
+    padding: 14px 0 0 80px !important;
+    vertical-align: middle;
+}
