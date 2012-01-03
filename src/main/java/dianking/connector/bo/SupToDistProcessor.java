@@ -26,7 +26,7 @@ public class SupToDistProcessor {
         for (Map<String, Object> supInfo : supList) {
             String supName = (String) supInfo.get("sup_name");
             String distName = (String) supInfo.get("dist_name");
-            String sqlGetSupPrd = "select * from sup_item_info where t_nick=? and nick=?and newflag=1 and picflag=0";
+            String sqlGetSupPrd = "select * from sup_item_info where t_nick=? and nick=? and newflag=1 and picflag=0";
             //判断淘宝商品，增加一个条件
             boolean isTaoBao = supInfo.get("flag").toString().equals("1");
             if (isTaoBao) {
