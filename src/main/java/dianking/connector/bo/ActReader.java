@@ -12,7 +12,11 @@ import net.sf.json.JSONObject;
  */
 public class ActReader {
 
-    public static String read(String propertyName, String actType, String param) {
+    public static String read(JSONObject actInfo) {
+        String propertyName = (String) actInfo.get("propertyName");
+        String actType = (String) actInfo.get("actType");
+        String param1 = (String) actInfo.get("param1");
+        String param2 = (String) actInfo.get("param2");
         String propertyType = DictProperty.propertiesMap.get(propertyName).get(1);
 
         String sql = "";
@@ -20,23 +24,22 @@ public class ActReader {
             switch (actType.charAt(0)) {
                 //前插
                 case '1': {
-                    sql = String.format(" %s='%s'+%s ", propertyName, param, propertyName);
+                    sql = String.format(" %s=concat('%s', %s) ", propertyName, param1, propertyName);
                     break;
                 }
                 //后缀
                 case '2': {
-                    sql = String.format(" %s=%s+'%s' ", propertyName, propertyName, param);
+                    sql = String.format(" %s=concat(%s, '%s') ", propertyName, propertyName, param1);
                     break;
                 }
                 //替换
                 case '3': {
-                    String[] params = param.split(",");
-                    sql = String.format(" %s=replace(%s, '%s', '%s') ", propertyName, propertyName, params[0], params[1]);
+                    sql = String.format(" %s=replace(%s, '%s', '%s') ", propertyName, propertyName, param1, param2);
                     break;
                 }
             }
         } else if (propertyType.equals("number")) {
-            sql = String.format(" %s=%s%s ", propertyName, propertyName, param);
+            sql = String.format(" %s=%s%s ", propertyName, propertyName, param1);
         }
         return sql;
     }
@@ -45,8 +48,8 @@ public class ActReader {
         StringBuilder sqlSet = new StringBuilder();
         JSONArray acts = JSONArray.fromObject(exp);
         for (Object o : acts) {
-            JSONArray actInfo = (JSONArray) o;
-            String sqlPart = read((String) actInfo.get(0), (String) actInfo.get(1), (String) actInfo.get(2));
+            JSONObject actInfo = (JSONObject) o;
+            String sqlPart = read(actInfo);
             if(sqlPart != null && sqlPart.length() > 0){
                 sqlSet.append(sqlPart)
                         .append(",");

@@ -79,7 +79,7 @@ $(function() {
         var propertyType = properties[propertyName][1]
         if (propertyType == 'text') {
             if($(this).parent().next().find('select').length == 0){
-                var actSelect = $('<select name="actType">')
+                var actSelect = $('<select name="cdtType">')
                 actSelect.append('<option value="1">包含</option>')
                 actSelect.append('<option value="2">以该内容开头</option>')
                 actSelect.append('<option value="3">以该内容结尾</option>')

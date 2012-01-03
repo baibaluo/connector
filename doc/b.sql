@@ -1,11 +1,6 @@
 
 USE `tb_shop`;
 
-/*Table structure for table `dist_item_info` */
-
-
-/*Table structure for table `dist_item_pic` */
-
 DROP TABLE IF EXISTS `dist_item_pic`;
 
 CREATE TABLE `dist_item_pic` (
@@ -22,7 +17,7 @@ CREATE TABLE `dist_item_pic` (
   `newflag` tinyint(4) default '1' COMMENT '1新图片，0为已经处理完的图片',
   `downflag` tinyint(4) default '1' COMMENT '1未下载完，0已经抓取到本地',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=163276 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=163276;
 
 /*Table structure for table `email_account` */
 
@@ -35,7 +30,7 @@ CREATE TABLE `email_account` (
   `domain` varchar(128) default NULL,
   `flag` tinyint(4) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=80 ;
 
 /*Table structure for table `itemrelate` */
 
@@ -46,7 +41,7 @@ CREATE TABLE `itemrelate` (
   `agent_item_id` bigint(20) default NULL,
   `distrib_item_id` bigint(20) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=128 ;
 
 /*Table structure for table `jd_orders` */
 
@@ -71,7 +66,7 @@ CREATE TABLE `jd_orders` (
   `invoice_info` varchar(100) default NULL,
   `oid` int(11) NOT NULL auto_increment,
   UNIQUE KEY `oid` (`oid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2905 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2905;
 
 /*Table structure for table `jd_ware_infos` */
 
@@ -96,7 +91,7 @@ CREATE TABLE `jd_ware_infos` (
   `user_mobilephone` varchar(20) default NULL,
   `user_email` varchar(36) default NULL,
   `order_id` varchar(10) default NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM ;
 
 /*Table structure for table `picrelate` */
 
@@ -126,7 +121,7 @@ CREATE TABLE `picrelate` (
   `downflag` tinyint(4) default '-1',
   `upflag` tinyint(4) default '-1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=110266 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=110266 ;
 
 /*Table structure for table `picrelate_bak` */
 
@@ -155,7 +150,7 @@ CREATE TABLE `picrelate_bak` (
   `downflag` tinyint(4) default '1' COMMENT '1未下载完，0已经抓取到本地',
   `upflag` tinyint(4) default '1' COMMENT '1未上传完，0已经上传完成',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=99971 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=99971 ;
 
 /*Table structure for table `prorelate` */
 
@@ -178,7 +173,7 @@ CREATE TABLE `prorelate` (
   `t_spec_stuts` tinyint(4) default NULL,
   `flag` tinyint(4) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=162;
 
 /*Table structure for table `seller_prd_title` */
 
@@ -191,7 +186,7 @@ CREATE TABLE `seller_prd_title` (
   `num_iid` bigint(20) default NULL,
   `flag` tinyint(4) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=940 DEFAULT CHARSET=gbk CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=940 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
 /*Table structure for table `shop_pic` */
 
@@ -203,7 +198,7 @@ CREATE TABLE `shop_pic` (
   `local_name` varchar(255) NOT NULL default '""',
   `t_tb_url` varchar(255) NOT NULL default '""',
   `flag` tinyint(2) default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM ;
 
 /*Table structure for table `shopcat` */
 
@@ -227,7 +222,7 @@ CREATE TABLE `shopcat` (
   `t_nick` varchar(128) default NULL,
   `flag` tinyint(4) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=135 ;
 
 /*Table structure for table `skurelate` */
 
@@ -262,7 +257,7 @@ CREATE TABLE `skurelate` (
   `flag` tinyint(4) default '-1' COMMENT '-1æ–°çš„skuæœªå¤„ç†ï¼Œ1æœ‰updateéœ€è¦å¤„ç†ï¼Œ0å¤„ç†å®Œæ¯•ï¼Œ2å·²ç»ä¸‹æž¶',
   `aliaflag` tinyint(4) default '-1' COMMENT '-1ç¼ºçœå€¼,3ã€å±žæ€§åæœ‰æ‰€å˜åŒ–éœ€è¦å¤„ç†ã€‚',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2095 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2095 ;
 
 
 /*Table structure for table `sup_item_pic` */
@@ -283,7 +278,7 @@ CREATE TABLE `sup_item_pic` (
   `newflag` tinyint(4) default '1' COMMENT '1新图片，0为已经处理完的图片',
   `downflag` tinyint(4) default '1' COMMENT '1未下载完，0已经抓取到本地',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=163276 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=163276 ;
 
 /*Table structure for table `supply` */
 
@@ -296,7 +291,7 @@ CREATE TABLE `supply` (
   `wait_time` bigint(20) default '10800' COMMENT '缺省3个小时',
   `flag` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 ;
 
 /*Table structure for table `supply_dist` */
 
@@ -314,7 +309,7 @@ CREATE TABLE `supply_dist` (
   `dist_shortname` varchar(32) default NULL,
   `flag` int(11) default NULL COMMENT '0可以进行同步（SUP和DIST都有）,1暂存储,2其他情况',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 ;
 
 /*Table structure for table `tuser` */
 
@@ -336,7 +331,7 @@ CREATE TABLE `tuser` (
   KEY `t_status_idx` (`t_status`),
   KEY `s_id_tuser_idx` (`s_id`),
   KEY `t_truename_idx` (`t_truename`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 ;
 
 /*Table structure for table `wordstat` */
 

@@ -27,9 +27,9 @@ public class RuleProcessor {
 
         //遍历规则规则、更新商品信息
         for(Map<String, Object> rule : ruleList){
-            log.info("规则 {} 开始处理 act_exp={} cdt_exp={}", new Object[]{rule.get("id"), rule.get("act_exp"), rule.get("cdt_exp")});
-            String sqlSet = ActReader.read((String) rule.get("act_exp"));
-            String sqlWhere = " where 1=1 " + CdtReader.read((String) rule.get("cdt_exp"));
+            log.info("规则 {} 开始处理 acts={} cdts={}", new Object[]{rule.get("id"), rule.get("acts"), rule.get("cdts")});
+            String sqlSet = ActReader.read((String) rule.get("acts"));
+            String sqlWhere = " where 1=1 " + CdtReader.read((String) rule.get("cdts"));
             String sqlUpdate = "update dist_item_info set " + sqlSet + sqlWhere;
             log.info("规则 {} sql=[{}]", new Object[]{rule.get("id"), sqlUpdate});
             //更新

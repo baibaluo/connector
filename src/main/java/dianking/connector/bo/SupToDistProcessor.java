@@ -1,6 +1,10 @@
 package dianking.connector.bo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,8 @@ import java.util.Map;
  */
 @Service
 public class SupToDistProcessor {
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -42,6 +48,7 @@ public class SupToDistProcessor {
                             "where t_nick=? and s_item_id=? and upflag!=0", distName, supPrd.get("num_iid"));
                     if (count > 0) {
                         //跳过此商品
+                        log.info(String.format("图片不完整，跳过商品id=%s", supPrd.get("id")));
                         continue;
                     }
                 }
@@ -50,24 +57,36 @@ public class SupToDistProcessor {
                 String supCids = (String) supPrd.get("seller_cids");
                 if (supCids != null && supCids.length() > 0) {
                     for (String supCid : supCids.split(",")) {
-                        int distCid = jdbcTemplate.queryForInt("select t_cid from shopcat where t_nick=? and s_nick=? and s_cid=?"
-                                , distName, supName, supCid);
-                        distCids += distCids + ",";
+                        try {
+                            int distCid = jdbcTemplate.queryForInt("select t_cid from shopcat where t_nick=? and s_nick=? and s_cid=?"
+                                    , distName, supName, supCid);
+                            distCids += distCid + ",";
+                        } catch (IncorrectResultSizeDataAccessException e) {
+                            //查询不到时忽略
+                            continue;
+                        }
                     }
                 }
 
                 //查询dist
-                Map distPrd = jdbcTemplate.queryForMap("select *  from dist_item_info  where nick=? and s_nick=? and s_num_iid="
-                        , distName, supName, supPrd.get("num_iid"));
+                List<Map<String, Object>> distPrds =  distPrds = jdbcTemplate.queryForList("select *  from dist_item_info  where nick=? and s_nick=? and s_num_iid=?"
+                            , distName, supName, supPrd.get("num_iid"));
 
-                if (distPrd != null) {
+                if(distPrds.size() > 1){
+                    jdbcTemplate.update("delete from dist_item_info where nick=? and s_nick=? and s_num_iid=?"
+                     , distName, supName, supPrd.get("num_iid"));
+                    distPrds.clear();
+                }
+
+                if (distPrds != null && distPrds.size() > 0) {
+                    log.info(String.format("更新商品id=%s", supPrd.get("id")));
                     String sqlUpdate = "update dist_item_info set" +
                             " sku=?, props_name=?, promoted_service=?, is_lightning_consignment=?, cid=?" +
                             ", seller_cids=?, props=?, input_pids=?, input_str=?, num=?" +
                             ", valid_thru=?, price=?, post_fee=?, express_fee=?, ems_fee=?" +
                             ", has_discount=?, freight_payer=?, has_invoice=?, has_warranty=?, approve_status=?" +
                             ", auction_point=?, property_alias=?, outer_id=?, is_virtual=?, video=?" +
-                            ", after_sale_id=?, sell_promise=?, prd_desc=?, flag=1" +
+                            ", after_sale_id=?, sell_promise=?, prd_desc=?, flag=1, title=?" +
                             " where " +
                             "nick=? and s_nick=? and s_num_iid=?";
                     jdbcTemplate.update(sqlUpdate
@@ -76,9 +95,11 @@ public class SupToDistProcessor {
                             , supPrd.get("valid_thru"), supPrd.get("price"), supPrd.get("post_fee"), supPrd.get("express_fee"), supPrd.get("ems_fee")
                             , supPrd.get("has_discount"), supPrd.get("freight_payer"), supPrd.get("has_invoice"), supPrd.get("has_warranty"), supPrd.get("approve_status")
                             , supPrd.get("auction_point"), supPrd.get("property_alias"), supPrd.get("outer_id"), supPrd.get("is_virtual"), supPrd.get("video")
-                            , supPrd.get("after_sale_id"), supPrd.get("sell_promise"), supPrd.get("prd_desc")
+                            , supPrd.get("after_sale_id"), supPrd.get("sell_promise"), supPrd.get("prd_desc"), supPrd.get("title")
                             , distName, supName, supPrd.get("num_iid"));
                 } else {
+                    log.info(String.format("新增商品id=%s", supPrd.get("id")));
+
                     String sqlInsert = "insert into dist_item_info " +
                             "( title, nick, detail_url, type" +
                             ", sku, props_name, created, promoted_service, is_lightning_consignment" +
@@ -92,7 +113,19 @@ public class SupToDistProcessor {
                             ", score, volume, one_station, second_kill, auto_fill" +
                             ", violation, is_prepay, ww_status, wap_desc, wap_detail_url" +
                             ", after_sale_id, cod_postage_id, sell_promise, prd_desc, s_num_iid" +
-                            ", s_nick ) values (";
+                            ", s_nick ) values (?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?, ?, ?, ?, ?" +
+                            ", ?)";
                     jdbcTemplate.update(sqlInsert
                     , supPrd.get("title"), distName, supPrd.get("detail_url"), supPrd.get("type")
                     , supPrd.get("sku"), supPrd.get("props_name"), supPrd.get("created"), supPrd.get("promoted_service"), supPrd.get("is_lightning_consignment")
