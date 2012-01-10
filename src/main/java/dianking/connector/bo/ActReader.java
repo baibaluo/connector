@@ -39,7 +39,12 @@ public class ActReader {
                 }
             }
         } else if (propertyType.equals("number")) {
-            sql = String.format(" %s=%s%s ", propertyName, propertyName, param1);
+            if(param1.matches("^\\d+$")){
+                sql = String.format(" %s=%s ", propertyName, param1);
+
+            } else {
+                sql = String.format(" %s=%s%s ", propertyName, propertyName, param1);
+            }
         }
         return sql;
     }

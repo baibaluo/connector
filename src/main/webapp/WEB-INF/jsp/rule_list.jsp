@@ -132,7 +132,7 @@
                         <td></td>
                         <td><input name="param1" type="text"></td>
                         <td>
-                            <input type="radio" name="and_or_sample" value="and"> 与
+                            <input type="radio" name="and_or_sample" value="and" checked="checked"> 与
                             <input type="radio" name="and_or_sample" value="or"> 或
                         </td>
                     </tr>

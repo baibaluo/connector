@@ -14,8 +14,9 @@ import java.util.Map;
 public class DictProperty {
 
     public static String propertiesJson = "{" +
-            "'num':['数量','number']," +
             "'title':['标题','text']," +
+            "'id':['ID','number']," +
+            "'num':['数量','number']," +
             "'price':['价格','number']}";
 
     public static Map<String, List<String>> propertiesMap = (Map<String, List<String>>) JSONObject.toBean(JSONObject.fromObject(propertiesJson), Map.class);

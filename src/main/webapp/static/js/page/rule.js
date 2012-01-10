@@ -74,6 +74,10 @@ function Rule() {
         $('#tr_cdt_sample~tr').each(function() {
             var cdt = {}
             $(this).find('select, input').each(function() {
+                //过滤未选中的radio
+                if($(this).attr('type') == 'radio' && !$(this).attr('checked')){
+                    return true
+                }
                 var propertyName = $(this).attr('name')
                 //_数字结尾的name，去掉_数字
                 propertyName = propertyName.replace(/_\d$/, '')
@@ -85,7 +89,7 @@ function Rule() {
     }
 
     this.fromDbToPage = function(id, callBack) {
-        this.aaa=1
+        this.aaa = 1
         this.fromDB(id, function() {
             if ($.isFunction(callBack)) {
                 rule.toPage()
@@ -116,20 +120,33 @@ function Rule() {
                     $(this).change()
                 }
             })
+            //给param2赋值
+            newTr.find('input[name=param2]').val(act['param2'])
         }
 
         //遍历条件，初始化每一项条件
         for (i in this.cdts) {
             var cdt = this.cdts[i]
             var newTr = this.addCdt()
-            newTr.find('select, input').each(function() {
+            //给select、input赋值
+            newTr.find('select, input[type!="radio"]').each(function() {
                 var propertyName = $(this).attr('name')
-                //_数字结尾的name，去掉_数字
-                propertyName = propertyName.replace(/_\d$/, '')
                 if (cdt[propertyName]) {
                     $(this).val(cdt[propertyName])
                     //手动触发change
                     $(this).change()
+                }
+            })
+            //给radio赋值
+            newTr.find('input[type="radio"]').each(function() {
+                var propertyName = $(this).attr('name')
+                //_数字结尾的name，去掉_数字
+                propertyName = propertyName.replace(/_\d$/, '')
+                if (cdt[propertyName]) {
+                    if ($(this).val() == cdt[propertyName]) {
+                        $(this).attr('checked', 'checked')
+
+                    }
                 }
             })
         }
