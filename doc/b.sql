@@ -254,8 +254,8 @@ CREATE TABLE `skurelate` (
   `t_sku_num` int(11) default NULL,
   `t_sku_mod_time` varchar(32) default NULL,
   `t_prop_alia` varchar(64) default NULL,
-  `flag` tinyint(4) default '-1' COMMENT '-1æ–°çš„skuæœªå¤„ç†ï¼Œ1æœ‰updateéœ€è¦å¤„ç†ï¼Œ0å¤„ç†å®Œæ¯•ï¼Œ2å·²ç»ä¸‹æž¶',
-  `aliaflag` tinyint(4) default '-1' COMMENT '-1ç¼ºçœå€¼,3ã€å±žæ€§åæœ‰æ‰€å˜åŒ–éœ€è¦å¤„ç†ã€‚',
+  `flag` tinyint(4) default '-1' ,
+  `aliaflag` tinyint(4) default '-1',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2095 ;
 
@@ -346,9 +346,6 @@ CREATE TABLE `wordstat` (
   `back` varchar(32) character set utf8 default NULL,
   `flag` tinyint(4) default '-1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4538 DEFAULT CHARSET=gbk CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

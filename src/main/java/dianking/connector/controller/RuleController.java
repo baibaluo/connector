@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ public class RuleController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/rule/list")
+    @RequestMapping
     public String list(HttpServletRequest request) {
 
         //查询出所有规则
@@ -41,7 +42,7 @@ public class RuleController {
         return "rule_list";
     }
 
-    @RequestMapping("/rule/get")
+    @RequestMapping
     public void get(HttpServletRequest request, PrintWriter printWriter) {
         String id = request.getParameter("id");
 
@@ -53,9 +54,8 @@ public class RuleController {
         printWriter.close();
     }
 
-    @RequestMapping("/rule/add")
-    public String add(HttpServletRequest request, String exp) {
-        log.info(exp);
+    @RequestMapping
+    public String add(HttpServletResponse response, String exp) throws IOException {
 
         JSONObject expObject = JSONObject.fromObject(exp);
         String name = expObject.getString("name");
@@ -67,13 +67,13 @@ public class RuleController {
         //新增规则
         jdbcTemplate.update("insert into rule (name, remark, acts, cdts, create_time) values (?, ?, ?, ?, now())", name, remark, actExp, cdtExp);
 
-        return this.list(request);
+        response.sendRedirect("/rule/list.htm");
+        return null;
     }
 
 
-    @RequestMapping("/rule/modify")
-    public String modify(HttpServletRequest request, String id, String exp) {
-        log.info(exp);
+    @RequestMapping
+    public String modify(HttpServletResponse response, String id, String exp) throws IOException {
 
         JSONObject expObject = JSONObject.fromObject(exp);
         String name = expObject.getString("name");
@@ -85,16 +85,16 @@ public class RuleController {
         //更新规则
         jdbcTemplate.update("update rule set name=?, remark=?, acts=?, cdts=? where id=?", name, remark, actExp, cdtExp, id);
 
-        return this.list(request);
+        response.sendRedirect("/rule/list.htm");
+        return null;
     }
 
-    @RequestMapping("/rule/delete")
-    public String delete(HttpServletRequest request, int id) {
-        log.info(JSONObject.fromObject(request.getParameterMap()).toString());
-
+    @RequestMapping
+    public String delete(HttpServletResponse response, int id) throws IOException {
         jdbcTemplate.update("delete from rule where id=?", id);
 
-        return this.list(request);
+        response.sendRedirect("/rule/list.htm");
+        return null;
     }
 
 

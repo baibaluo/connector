@@ -66,9 +66,8 @@ public class ActReader {
     }
 
     public static void main(String[] args) {
-        JSONObject.fromObject("{\"acts\":[],\"cdts\":[],\"name\":\"规则4\",\"remark\":\"规则4规则4\"}");
 
-        String actExp = "[[\"title\",\"1\", \"新品 \"], [\"title\",\"3\", \"2011,2012\"]]";
-        read(actExp);
+        String actExp = "[{\"propertyName\":\"title\",\"actType\":\"3\",\"param1\":\"2011\",\"param2\":\"2012\"},{\"propertyName\":\"title\",\"actType\":\"1\",\"param1\":\"促销\"},{\"propertyName\":\"price\",\"param1\":\"*0.8\"}]";
+        System.out.println(read(actExp));;
     }
 }

@@ -28,7 +28,7 @@ public class ItemController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/item/list")
+    @RequestMapping
     public String list(HttpServletRequest request) {
         List<Map<String,Object>> itemList = jdbcTemplate.queryForList("select id, title, price, num, list_time from sup_item_info order by need_syn desc, id asc");
         //查询出所有规则
@@ -38,7 +38,7 @@ public class ItemController {
         return "item_list";
     }
 
-    @RequestMapping("/item/modifySyn")
+    @RequestMapping
     public String modifySyn(HttpServletRequest request, String id) {
 
         //修改商品同步状态
@@ -47,7 +47,7 @@ public class ItemController {
         return this.list(request);
     }
 
-    @RequestMapping("/item/getItemRule")
+    @RequestMapping
     public void getItemRule(String itemId, PrintWriter printWriter) {
 
         String ruleId = null;
@@ -60,7 +60,7 @@ public class ItemController {
         printWriter.flush();
     }
 
-    @RequestMapping("/item/setItemRule")
+    @RequestMapping
     public String setItemRule(HttpServletRequest request, String itemId, String ruleId) {
 
         jdbcTemplate.update("delete from item_rule where item_id=?", itemId);

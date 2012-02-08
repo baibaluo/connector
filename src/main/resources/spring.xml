@@ -11,4 +11,10 @@
     <import resource="spring-db.xml"/>
     <import resource="spring-quartz.xml"/>
 
+    <!--处理运行时异常-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="error"/>
+        <property name="warnLogCategory" value="exceptionResolver"/>
+    </bean>
+
 </beans>
