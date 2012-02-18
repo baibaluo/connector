@@ -52,8 +52,8 @@
                         <tr class="d0 tooltip">
                             <td>${rule.name}</td>
                             <td>${rule.remark}</td>
-                            <td>${rule.create_time}</td>
-                            <td>${rule.update_time}</td>
+                            <td title="${rule.create_time}">${rule.create_time}</td>
+                            <td title="${rule.update_time}">${rule.update_time}</td>
                             <td>
                                 <div btn="modify" ruleId="${rule.id}"
                                      ruleExp="<c:out value='${rule.exp}' escapeXml="true"/>"

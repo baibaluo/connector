@@ -40,6 +40,9 @@ $(function() {
 
     //删除按钮事件
     $('td>div[btn="delete"]').click(function() {
+        if(!confirm('确定要删除该规则吗?')){
+            return
+        }
         var id = $(this).attr('ruleId')
         location.href = '/rule/delete.htm?id=' + id
     })
