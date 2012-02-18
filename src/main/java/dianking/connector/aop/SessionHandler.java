@@ -4,6 +4,8 @@ import dianking.connector.controller.LoginController;
 import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class SessionHandler extends HandlerInterceptorAdapter {
     Log log = LogFactory.getLog(this.getClass());
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

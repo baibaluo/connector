@@ -322,6 +322,10 @@ p {
     border: 1px solid;
     width: 100%;
 }
+.loginTable {
+    border: 1px solid;
+    width: 400px;
+}
 #browsePath a {
     font-weight: bold;
     padding: 0 5px;
@@ -382,6 +386,11 @@ img {
     width: 460px;
     float: right;
     display: none;
+}
+#loginForm {
+    margin: auto;
+    padding-top: 15px;
+    width: 400px;
 }
 .btn {
     cursor: pointer;
